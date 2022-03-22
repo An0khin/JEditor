@@ -1,0 +1,89 @@
+JFDML JFormDesigner: "6.0.6.0.190" Java: "1.8.0_172" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+			name: "this"
+			"$sizePolicy": 1
+			"defaultCloseOperation": 3
+			"title": "JEditor"
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				"verticalScrollBarPolicy": 21
+				"componentOrientation": sfield java.awt.ComponentOrientation LEFT_TO_RIGHT
+				"preferredSize": new java.awt.Dimension( 95, 34 )
+				"horizontalScrollBarPolicy": 32
+				add( new FormComponent( "javax.swing.JList" ) {
+					name: "listFiles"
+					"layoutOrientation": 2
+					"selectionMode": 0
+					"visibleRowCount": 1
+					"componentOrientation": sfield java.awt.ComponentOrientation LEFT_TO_RIGHT
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "First"
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane2"
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "textCode"
+					"font": new java.awt.Font( "Miriam Mono CLM", 1, 12 )
+					"tabSize": 4
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
+			} )
+			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
+				name: "menuBar1"
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menuFile"
+					"text": "File"
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "newButton"
+						"text": "New"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "openButton"
+						"text": "Open"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "saveButton"
+						"text": "Save"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "saveAsButton"
+						"text": "Save as"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "closeButton"
+						"text": "Close"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "exitButton"
+						"text": "Exit"
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menuEdit"
+					"text": "Edit"
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menuView"
+					"text": "View"
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menuHelp"
+					"text": "Help"
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "chooseJDKFolder"
+						"text": "Choose JDK"
+					} )
+				} )
+			}
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 230, 5 )
+			"size": new java.awt.Dimension( 580, 565 )
+		} )
+	}
+}
