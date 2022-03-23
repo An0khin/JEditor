@@ -264,11 +264,11 @@ class JEditor {
 		public void keyPressed(KeyEvent e) {
 			char c = e.getKeyChar();
 
-			int pos = form.getLastSymbol(); //position of last writed symbol
+			int pos = form.getLastSymbol(); //position of last written symbol
 			String nextC = form.getCode().length() > pos ? Character.toString(form.getCode().charAt(pos)) : ""; //next after caret symbol
 
-			if(prevC == '{' && c == '\n' && (!nextC.equals("")  && nextC.equals("}"))) { //for writing new line when caret into {} and 
-				form.insertCode("\n", pos);												 //ENTER was pressed
+			if(prevC == '{' && c == '\n' && (!nextC.equals("")  && nextC.equals("}"))) { //for writing new line when caret into {} and ENTER was pressed
+				form.insertCode("\n", pos);
 			}
 
 			// if(nextC.equals(Character.toString(c)))
@@ -286,11 +286,10 @@ class JEditor {
 				}
 			}
 
-			
-
 			JChecker.find(form); //highlight
 		}
 		public void keyTyped(KeyEvent e) {
+			
 		}
 	}
 }
