@@ -41,6 +41,7 @@ public class Unarchiver {
 								}
 							}
 							if(!methods.isEmpty())
+
 								classes.put(name, methods);
 						}
 						
@@ -62,18 +63,43 @@ public class Unarchiver {
 
 			File doc = new File(path.toString() + File.separatorChar + "JEditorMethods.dat"); //path to My Documents
 			BufferedWriter bw = new BufferedWriter(new FileWriter(doc));
-			TreeMap<String, String> sorted = new TreeMap<>();
+			TreeMap<String, ArrayList<String>> sorted = new TreeMap<>();
+
+			ArrayList<String> list = new ArrayList<>();
 
 			classes.forEach((k, v) -> {
-				for(Method m : v) {
-					sorted.put(m.getName(), m.toString());
+				list.clear();
+				// if(sorted.get(v.get(0).getName()) != null) {
+				// 	//list.addAll(sorted.get(v.get(0).getName()));
+				// 	for(Method m : sorted.get(v.get(0).getName())) {
+				// 		list.add(m.getName());
+				// 	}
+				// } else {
+				// 	list.add(v.get(0).getName());
+				// }
+				// sorted.put(list.get(0), list);
+
+
+				// if(sorted.get(m.getName()) != null) {
+				// 	list.addAll(sorted.get(m.getName()));
+				// }
+				for(Method m : v) { //Doesn't work
+					list.add(m.toString());
 				}
+				if(sorted.containsKey(v.get(0).getName())) {
+					for(String m : sorted.get(v.get(0).getName())) {
+						list.add(m);
+					}
+				}
+				System.out.println(k + " >>> " + list);
+				sorted.put(v.get(0).getName(), list);
 			});
 
 			sorted.forEach((k, v) -> {
 				try {
-					bw.write(k + ">>>" + v + "|||");
-					bw.flush();
+					//System.out.println(k + " >>> " + v);
+					// bw.write(k + ">>>" + v + "|||");
+					// bw.flush();
 				} catch(Exception ex) {ex.printStackTrace();}
 			});
 
