@@ -66,6 +66,7 @@ public class Unarchiver {
 			TreeMap<String, ArrayList<String>> sorted = new TreeMap<>();
 
 			ArrayList<String> list = new ArrayList<>();
+			ArrayList<String> tempList = new ArrayList<>();
 
 			classes.forEach((k, v) -> {
 				list.clear();
@@ -83,23 +84,50 @@ public class Unarchiver {
 				// if(sorted.get(m.getName()) != null) {
 				// 	list.addAll(sorted.get(m.getName()));
 				// }
-				for(Method m : v) { //Doesn't work
-					list.add(m.toString());
-				}
-				if(sorted.containsKey(v.get(0).getName())) {
-					for(String m : sorted.get(v.get(0).getName())) {
-						list.add(m);
+
+
+				for(Method m : v) {
+					list.clear();
+					list.add(k);
+					if(sorted.containsKey(m.getName())) {
+						list.addAll((ArrayList<String>)sorted.get(m.getName()).clone());
 					}
+					System.out.println(m.getName() + " >>> " + list);
+					sorted.put(m.getName(), (ArrayList<String>) list.clone());
 				}
-				System.out.println(k + " >>> " + list);
-				sorted.put(v.get(0).getName(), list);
+				
+
+
+				// for(Method m : v) { //Doesn't work
+				// 	list.add(m.toString());
+				// }
+				// if(sorted.containsKey(v.get(0).getName())) {
+				// 	tempList.clear();
+				// 	tempList.addAll((ArrayList<String>) sorted.get(v.get(0).getName()).clone());
+				// 	for(String m : tempList) {
+				// 		list.add(m);
+				// 	}
+				// }
+
+				//k - class
+				//v - arraylist<Method>
+
+				// System.out.println(k + " >>> " + list);
+				// sorted.put(v.get(0).getName(), list);
+				// System.out.println(v.get(0).getName());
 			});
 
+			for(int i = 0; i < 50; i++) {
+				System.out.println();
+			}
+
 			sorted.forEach((k, v) -> {
+				//k - method
+				//v - arrayList<String> of classes
 				try {
-					//System.out.println(k + " >>> " + v);
-					// bw.write(k + ">>>" + v + "|||");
-					// bw.flush();
+					System.out.println(k + " >>> " + v);
+					bw.write(k + ">>>" + v + "|||");
+					bw.flush();
 				} catch(Exception ex) {ex.printStackTrace();}
 			});
 
