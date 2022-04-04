@@ -1,17 +1,20 @@
 package com.home;
 import com.home.JEditorForm;
+import com.home.JEditorAutoFill;
 import com.home.JCodeFile;
 import com.home.JChecker;
 import com.home.Unarchiver;
 import java.io.*;
 import java.util.*;
 import javax.swing.*;
+import java.awt.Point;
 import java.awt.event.*;
 import javax.swing.event.*;
 
 class JEditor {
 	//Hashtable<String, String> dataList = new Hashtable<>();
 	//String currentFile;
+	JEditorAutoFill auto = new JEditorAutoFill();
 	JCodeFile currentCode = null;
 	ArrayList<JCodeFile> files = new ArrayList<>();
 	ArrayList<String> filesName = new ArrayList<>();
@@ -34,6 +37,7 @@ class JEditor {
 			e -> saveAsButtonActionPerformed(e), e -> listFilesValueChanged(e), e -> closeButtonActionPerformed(e),
 			e -> exitButtonActionPerformed(e), new KeyChecker(), e -> chooseJDKFolder(e));
 		form.setVisible(true);
+		//auto.setVisible(true);
 	}
 	public void newButtonActionPerformed(ActionEvent e) {
 		currentCode = new JCodeFile("untitled");
@@ -256,13 +260,20 @@ class JEditor {
 			filesName.add(currentCode.getName());
 		} catch(Exception e) {}
 	}
-	class KeyChecker implements KeyListener {
+	class KeyChecker extends KeyAdapter {
 		char prevC;
+		@Override
 		public void keyReleased(KeyEvent e) {
 			JChecker.find(form); //highlight
 		}
+		@Override
 		public void keyPressed(KeyEvent e) {
 			char c = e.getKeyChar();
+
+			if(c == '.') { /////////////////////////////NEED FIX
+				Point p = form.getFillLocation();
+				auto.show(form, p.x, p.y);
+			}
 
 			int pos = form.getLastSymbol(); //position of last written symbol
 			String nextC = form.getCode().length() > pos ? Character.toString(form.getCode().charAt(pos)) : ""; //next after caret symbol
@@ -287,8 +298,6 @@ class JEditor {
 			}
 
 			JChecker.find(form); //highlight
-		}
-		public void keyTyped(KeyEvent e) {
 			
 		}
 	}

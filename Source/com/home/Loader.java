@@ -2,16 +2,15 @@ package com.home;
 
 import java.io.*;
 import java.util.*;
-import java.util.TreeMap;
 
 public class Loader {
 	private static Loader instance;
 	private Loader() {}
 
-	public static void main(String[] args) {
-		Loader.getInstance().loadMethodsClasses();
-		Loader.getInstance().loadClassesMethods();
-	}
+	// public static void main(String[] args) {
+	// 	Loader.getInstance().loadMethodsClasses();
+	// 	Loader.getInstance().loadClassesMethods();
+	// }
 
 	public static Loader getInstance() {
 		if(instance == null) {

@@ -45,7 +45,16 @@ public class JEditorForm extends JFrame {
 		}
 		else
 			return cFile;
-
+	}
+	public Point getFillLocation() {
+		Point p = new Point();
+		try {
+			Rectangle rect = textCode.modelToView(getLastSymbol());
+			p = rect.getLocation();
+			p.y += rect.getHeight() + 90;
+			p.x += 10;
+		} catch(Exception ex) {ex.printStackTrace();}
+		return p;
 	}
 	public void setCode(String code) {
 		textCode.setText(code);
@@ -106,7 +115,7 @@ public class JEditorForm extends JFrame {
 
 	public void setActionListeners(ActionListener alNew, ActionListener alOpen, 
 		ActionListener alSave, ActionListener alSaveAs, ListSelectionListener alSelect,
-		ActionListener alClose, ActionListener alExit, KeyListener alKey, ActionListener alJDK) {
+		ActionListener alClose, ActionListener alExit, KeyAdapter alKey, ActionListener alJDK) {
 		newButton.addActionListener(alNew);
 		openButton.addActionListener(alOpen);
 		saveButton.addActionListener(alSave);
