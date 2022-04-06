@@ -268,12 +268,11 @@ class JEditor {
 		}
 		@Override
 		public void keyPressed(KeyEvent e) {
+			auto.setFocusable(false); //popupmenu
 			char c = e.getKeyChar();
 
-			if(c == '.') { /////////////////////////////NEED FIX
-				Point p = form.getFillLocation();
-				auto.show(form, p.x, p.y);
-			}
+			Point p = form.getFillLocation();//popupmenu
+			auto.show(form, p.x, p.y);//popupmenu
 
 			int pos = form.getLastSymbol(); //position of last written symbol
 			String nextC = form.getCode().length() > pos ? Character.toString(form.getCode().charAt(pos)) : ""; //next after caret symbol
