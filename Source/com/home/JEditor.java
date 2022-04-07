@@ -15,6 +15,7 @@ class JEditor {
 	//Hashtable<String, String> dataList = new Hashtable<>();
 	//String currentFile;
 	JEditorAutoFill auto = new JEditorAutoFill();
+	boolean showAuto = false;
 	JCodeFile currentCode = null;
 	ArrayList<JCodeFile> files = new ArrayList<>();
 	ArrayList<String> filesName = new ArrayList<>();
@@ -269,10 +270,18 @@ class JEditor {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			auto.setFocusable(false); //popupmenu
+			if(!showAuto) {		
+				auto.setVisible(false); //popupmenu
+			} else {
+				Point p = form.getFillLocation();//popupmenu
+				auto.show(form, p.x, p.y);//popupmenu
+			}
+
 			char c = e.getKeyChar();
 
-			Point p = form.getFillLocation();//popupmenu
-			auto.show(form, p.x, p.y);//popupmenu
+			if(e.isControlDown() && c == ' ') {
+				showAuto = !showAuto;
+			}
 
 			int pos = form.getLastSymbol(); //position of last written symbol
 			String nextC = form.getCode().length() > pos ? Character.toString(form.getCode().charAt(pos)) : ""; //next after caret symbol
