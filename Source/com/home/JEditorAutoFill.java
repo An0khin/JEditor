@@ -1,10 +1,16 @@
 package com.home;
+import com.home.Loader;
 import java.awt.*;
 import javax.swing.*;
+import java.util.*;
 
 public class JEditorAutoFill extends JPopupMenu {
 	public JEditorAutoFill() {
 		initComponents();
+
+		String[] methods = Loader.getInstance().getMethodsClasses();
+
+		listOfFillable.setListData(methods);
 	}
 
 	private void initComponents() {

@@ -19,7 +19,12 @@ public class Loader {
 		return instance;
 	}
 
-	private TreeMap<String, String> loadMethodsClasses() {
+	public String[] getMethodsClasses() {
+		Set<String> set = loadMethodsClasses().keySet();
+		return set.toArray(new String[0]);
+	}
+
+	private TreeMap<String, String> loadMethodsClasses() { //<Method name> : <Class fullname>
 		TreeMap<String, String> tm = new TreeMap<>();
 		String line;
 		String[] classes;
@@ -37,9 +42,9 @@ public class Loader {
 				tm.put(methods[0], methods[1]);
 			}
 
-			tm.forEach((k, v) -> {
-				System.out.println(k + " >>> " + v);
-			});
+			// tm.forEach((k, v) -> {
+			// 	System.out.println(k + " >>> " + v);
+			// });
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -47,7 +52,7 @@ public class Loader {
 		return tm;
 	}
 
-	private TreeMap<String, String> loadClassesMethods() {
+	private TreeMap<String, String> loadClassesMethods() { //<Class fullname> : <Its public methods>
 		TreeMap<String, String> tm = new TreeMap<>();
 		String line;
 		String[] classes;
@@ -55,7 +60,7 @@ public class Loader {
 
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(new File(System.getProperty("user.home") + File.separatorChar + "Documents" + 
-				File.separatorChar + "JEditor" + File.separatorChar + "JEditorMethodsClasses.dat")));
+				File.separatorChar + "JEditor" + File.separatorChar + "JEditorClassesMethods.dat")));
 			
 			line = br.readLine();
 			classes = line.split("[|][|][|]");
@@ -65,9 +70,9 @@ public class Loader {
 				tm.put(methods[0], methods[1]);
 			}
 
-			tm.forEach((k, v) -> {
-				System.out.println(k + " >>> " + v);
-			});
+			// tm.forEach((k, v) -> {
+			// 	System.out.println(k + " >>> " + v);
+			// });
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
